@@ -2,7 +2,7 @@ from django.contrib.postgres.fields.array import ArrayField
 from django.db import models
 
 
-class Post(models.Model):
+class Article(models.Model):
     STATUS_DRAFT = 'D'
     STATUS_PUBLISHED = 'P'
     STATUS_PRIVATE = 'I'
@@ -28,3 +28,6 @@ class Post(models.Model):
         verbose_name = '文章'
         verbose_name_plural = '文章'
         ordering = ['-order', '-create_at']
+
+    def __str__(self):
+        return self.title

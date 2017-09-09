@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf import settings
 from django.conf.urls import url, include
+from django.conf.urls.static import static
 from django.contrib import admin
 
 from . import views
@@ -22,6 +23,7 @@ from . import views
 urlpatterns = [
     url(r'^$', views.home),
     url(r'^admin/', admin.site.urls),
+    url(r'^summernote/', include('django_summernote.urls')),
 ]
 
 # 配置: django-debug-toolbar
@@ -39,3 +41,7 @@ if 'debug_toolbar' in settings.INSTALLED_APPS:
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
     urlpatterns += staticfiles_urlpatterns()
+
+    # 配置: django-summernote
+    # https://docs.djangoproject.com/en/1.11/topics/files/
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

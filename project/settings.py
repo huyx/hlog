@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'django_summernote',
     'bootstrap3',
     'apps.core',
     'apps.blog',
@@ -123,3 +124,6 @@ if DEBUG:
 
 # 配置 django-bootstrap3
 #
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
