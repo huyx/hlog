@@ -2,6 +2,14 @@ from django.contrib.postgres.fields.array import ArrayField
 from django.db import models
 
 
+class ArticleManager(models.Manager):
+    def article_list(self, request):
+        if request.user.is_authenticated:
+            return self.filter(status__in=(Article.STATUS_PUBLISHED, Article.STATUS_PRIVATE))
+        else:
+            return self.filter(status=Article.STATUS_PUBLISHED)
+
+
 class Article(models.Model):
     STATUS_DRAFT = 'D'
     STATUS_PUBLISHED = 'P'
@@ -23,6 +31,8 @@ class Article(models.Model):
     tags = ArrayField(models.CharField(max_length=20), size=10, verbose_name='标签')
     create_at = models.DateTimeField('创建时间', auto_now_add=True)
     updata_at = models.DateTimeField('更新时间', auto_now=True)
+
+    objects = ArticleManager()
 
     class Meta:
         verbose_name = '文章'

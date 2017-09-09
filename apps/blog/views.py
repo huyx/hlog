@@ -1,3 +1,23 @@
-from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 
-# Create your views here.
+from .models import Article
+
+
+class HomeView(ListView):
+    template_name = 'blog/home.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        return Article.objects.article_list(self.request)
+
+
+class ArticleListView(ListView):
+    template_name = 'blog/article_list.html'
+    paginate_by = 50
+
+    def get_queryset(self):
+        return Article.objects.article_list(self.request)
+
+
+class ArticleDetailView(DetailView):
+    template_name = 'blog/article_detail.html'

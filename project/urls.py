@@ -21,7 +21,8 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.home),
+    url(r'^', include('apps.blog.urls', namespace='blog')),
+    url(r'^about/$', views.about),
     url(r'^admin/', admin.site.urls),
     url(r'^summernote/', include('django_summernote.urls')),
 ]
