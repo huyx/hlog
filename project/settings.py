@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'bootstrap3',
     'apps.core',
+    'apps.blog',
 ]
 
 MIDDLEWARE = [
@@ -66,7 +67,7 @@ TEMPLATES = [
 ]
 
 DATABASES = {
-    'default': env.db('DJANGO_DATABASE_URL', 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')),
+    'default': env.db('DJANGO_DATABASE_URL', 'postgresql://postgres:postgres@localhost:/hlog'),
 }
 
 # 密码有效性验证
